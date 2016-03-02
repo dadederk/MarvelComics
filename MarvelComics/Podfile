@@ -1,0 +1,16 @@
+platform :ios, '9.0'
+use_frameworks!
+
+target 'MarvelComics' do
+	pod 'BothamNetworking', '~> 1.0'
+    	pod 'CryptoSwift', '~> 0.2'
+end
+
+target 'MarvelComicsTests' do
+
+end
+
+target 'MarvelComicsUITests' do
+
+end
+

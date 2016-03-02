@@ -1,0 +1,6 @@
+framework module BothamNetworking {
+  umbrella header "BothamNetworking-umbrella.h"
+
+  export *
+  module * { export * }
+}
