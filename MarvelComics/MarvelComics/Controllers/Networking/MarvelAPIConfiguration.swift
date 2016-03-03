@@ -35,6 +35,6 @@ struct MarvelAPIConfig {
             value = configuration.objectForKey(key)!
         }
         
-        return value;
+        return value
     }
 }
