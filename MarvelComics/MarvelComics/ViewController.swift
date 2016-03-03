@@ -9,11 +9,14 @@
 import UIKit
 import SDWebImage
 
-class ViewController: UIViewController, UITableViewDelegate {
+class ViewController: UIViewController, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     var dataSource: ArrayDataSource!
     var configureCell: ConfigureCell!
     var comics: [Comic] = []
+    var selectedComic: Comic!
+    
+    let imagePickerController = UIImagePickerController()
     
     var fetchingData = false
     
@@ -26,9 +29,11 @@ class ViewController: UIViewController, UITableViewDelegate {
         self.configureCell = {(cell, item) in
             if let comic = item as? Comic,
                 let comicCell = cell as? ComicCell {
+            
+                    let placeholderImage = UIImage(named: "Logo")
                     
                     comicCell.titleLabel.text = comic.title
-                    comicCell.coverImageView.sd_setImageWithURL(NSURL(string: comic.imageURL))
+                    comicCell.coverImageView.sd_setImageWithURL(NSURL(string: comic.imageURL), placeholderImage:placeholderImage)
             }
         }
         
@@ -41,7 +46,6 @@ class ViewController: UIViewController, UITableViewDelegate {
     func initialLoading() {
     
         self.getComics {
-            
             self.activityIndicator.stopAnimating()
             self.tableView.hidden = false
         }
@@ -50,7 +54,6 @@ class ViewController: UIViewController, UITableViewDelegate {
     func getComics(completion:() -> ()) {
     
         guard self.fetchingData else {
-        
             self.fetchingData = true
             
             MarvelAPIClient.comics(self.comics.count, orderBy:OrderBy.onsaleDescending) { comics -> () in
@@ -64,7 +67,6 @@ class ViewController: UIViewController, UITableViewDelegate {
                     print("Error getting comics")
                 }
             }
-            
             return
         }
     }
@@ -83,17 +85,32 @@ class ViewController: UIViewController, UITableViewDelegate {
     }
     
     func isLastCellWithIndexPath(index:NSIndexPath) -> Bool {
-    
         return index.row == self.comics.count - 1
     }
     
     // MARK: UITableViewDelegate
-    
     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         
         if self.isLastCellWithIndexPath(indexPath) {
-        
             self.getComics{}
         }
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        if (UIImagePickerController.availableMediaTypesForSourceType(UIImagePickerControllerSourceType.Camera) != nil) {
+            self.imagePickerController.delegate = self
+            self.imagePickerController.sourceType = UIImagePickerControllerSourceType.Camera
+            
+            self.selectedComic = self.comics[indexPath.row]
+            
+            self.presentViewController(self.imagePickerController, animated: true) {}
+        }
+    }
+    
+    // MARK: UIImagePickerControllerDelegate
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
+        
+        self.dismissViewControllerAnimated(true) {}
     }
 }

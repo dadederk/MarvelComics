@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2124D7101C88FF1600B54C25 /* FileImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2124D70F1C88FF1600B54C25 /* FileImageManager.swift */; };
 		21E734981C8790FB00D40F7E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E734971C8790FB00D40F7E /* AppDelegate.swift */; };
 		21E7349A1C8790FB00D40F7E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E734991C8790FB00D40F7E /* ViewController.swift */; };
 		21E7349D1C8790FB00D40F7E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21E7349B1C8790FB00D40F7E /* Main.storyboard */; };
@@ -44,6 +45,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2124D70F1C88FF1600B54C25 /* FileImageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileImageManager.swift; sourceTree = "<group>"; };
 		21E734941C8790FB00D40F7E /* MarvelComics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MarvelComics.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		21E734971C8790FB00D40F7E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		21E734991C8790FB00D40F7E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -195,6 +197,7 @@
 			children = (
 				21E735111C87BA7B00D40F7E /* DataSource.swift */,
 				21E7350F1C87BA3300D40F7E /* ArrayDataSource.swift */,
+				2124D70F1C88FF1600B54C25 /* FileImageManager.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -417,6 +420,7 @@
 			files = (
 				21E7350A1C87B3E300D40F7E /* MarvelAPIParser.swift in Sources */,
 				21E735181C882A5200D40F7E /* Dictionary.swift in Sources */,
+				2124D7101C88FF1600B54C25 /* FileImageManager.swift in Sources */,
 				21E7350D1C87B4FA00D40F7E /* Comic.swift in Sources */,
 				21E7349A1C8790FB00D40F7E /* ViewController.swift in Sources */,
 				21E735151C87BB4A00D40F7E /* ComicCell.swift in Sources */,
