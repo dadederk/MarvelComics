@@ -55,11 +55,13 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework 'Pods-MarvelComics/BothamNetworking.framework'
   install_framework 'Pods-MarvelComics/CryptoSwift.framework'
   install_framework 'Pods-MarvelComics/Result.framework'
+  install_framework 'Pods-MarvelComics/SDWebImage.framework'
   install_framework 'Pods-MarvelComics/SwiftyJSON.framework'
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'Pods-MarvelComics/BothamNetworking.framework'
   install_framework 'Pods-MarvelComics/CryptoSwift.framework'
   install_framework 'Pods-MarvelComics/Result.framework'
+  install_framework 'Pods-MarvelComics/SDWebImage.framework'
   install_framework 'Pods-MarvelComics/SwiftyJSON.framework'
 fi

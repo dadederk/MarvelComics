@@ -3,7 +3,8 @@ use_frameworks!
 
 target 'MarvelComics' do
 	pod 'BothamNetworking', '~> 1.0'
-    	pod 'CryptoSwift', '~> 0.2'
+    pod 'CryptoSwift', '~> 0.2'
+    pod 'SDWebImage', '~> 3.7'
 end
 
 target 'MarvelComicsTests' do

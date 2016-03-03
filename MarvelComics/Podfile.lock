@@ -4,16 +4,21 @@ PODS:
     - SwiftyJSON
   - CryptoSwift (0.2.3)
   - Result (1.0.2)
+  - SDWebImage (3.7.5):
+    - SDWebImage/Core (= 3.7.5)
+  - SDWebImage/Core (3.7.5)
   - SwiftyJSON (2.3.2)
 
 DEPENDENCIES:
   - BothamNetworking (~> 1.0)
   - CryptoSwift (~> 0.2)
+  - SDWebImage (~> 3.7)
 
 SPEC CHECKSUMS:
   BothamNetworking: 9bb19c2802436ec56ff70460ddd3a2bb180cb4d2
   CryptoSwift: b2bf37b8e7cc6d682ef3365cb966bc5ae5174aa5
   Result: dd3dd71af3fa2e262f1a999e14fba2c25ec14f16
+  SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
 COCOAPODS: 0.38.2
