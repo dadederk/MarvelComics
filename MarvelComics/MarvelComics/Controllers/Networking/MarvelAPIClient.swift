@@ -21,12 +21,13 @@ struct MarvelAPIClient {
         static let hash = "hash"
     }
     
-    static func comics() {
+    static func comics(completion:([Comic]) -> ()) {
         
         let apiClient = BothamAPIClient(baseEndpoint: baseURL)
         apiClient.GET(comicsEndPoint, parameters: basicParams()) { result -> () in
             result.mapJSON({ json in
-                print(json)
+                
+                completion(MarvelAPIParser.parseComics(json))
             })
         }
     }
