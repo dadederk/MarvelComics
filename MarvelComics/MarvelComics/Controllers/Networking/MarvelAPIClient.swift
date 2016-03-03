@@ -26,8 +26,9 @@ struct MarvelAPIClient {
         let apiClient = BothamAPIClient(baseEndpoint: baseURL)
         apiClient.GET(comicsEndPoint, parameters: basicParams()) { result -> () in
             result.mapJSON({ json in
-                
-                completion(MarvelAPIParser.parseComics(json))
+                dispatch_async(dispatch_get_main_queue(), {
+                    completion(MarvelAPIParser.parseComics(json))
+                })
             })
         }
     }
