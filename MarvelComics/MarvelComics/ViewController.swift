@@ -9,10 +9,13 @@
 import UIKit
 import SDWebImage
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDelegate {
 
     var dataSource: ArrayDataSource!
     var configureCell: ConfigureCell!
+    var comics: [Comic] = []
+    
+    var fetchingData = false
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -29,32 +32,68 @@ class ViewController: UIViewController {
             }
         }
         
-        self.tableView.hidden = true;
+        self.tableView.hidden = true
+        self.tableView.delegate = self
+        
         self.initialLoading()
     }
     
     func initialLoading() {
     
-        MarvelAPIClient.comics(orderBy:OrderBy.onsaleDescending) { comics -> () in
+        self.getComics {
             
-            if let comics = comics {
+            self.activityIndicator.stopAnimating()
+            self.tableView.hidden = false
+        }
+    }
+    
+    func getComics(completion:() -> ()) {
+    
+        guard self.fetchingData else {
+        
+            self.fetchingData = true
+            
+            MarvelAPIClient.comics(self.comics.count, orderBy:OrderBy.onsaleDescending) { comics -> () in
                 
-                self.dataSource = ArrayDataSource(
-                    items: comics,
-                    cellReuseIdentifier: String(ComicCell),
-                    configureCell: self.configureCell)
+                self.fetchingData = false
                 
-                self.tableView?.dataSource = self.dataSource
-                self.tableView.reloadData()
-                
-                self.activityIndicator.stopAnimating()
-            } else {
-                
-                print("Error getting comics")
+                if let comics = comics {
+                    self.loadComics(comics)
+                    completion()
+                } else {
+                    print("Error getting comics")
+                }
             }
             
-            self.tableView.hidden = false;
+            return
+        }
+    }
+    
+    func loadComics(comics: [Comic]) {
+    
+        self.comics = self.comics + comics
+        
+        self.dataSource = ArrayDataSource(
+            items: self.comics,
+            cellReuseIdentifier: String(ComicCell),
+            configureCell: self.configureCell)
+        
+        self.tableView?.dataSource = self.dataSource
+        self.tableView.reloadData()
+    }
+    
+    func isLastCellWithIndexPath(index:NSIndexPath) -> Bool {
+    
+        return index.row == self.comics.count - 1
+    }
+    
+    // MARK: UITableViewDelegate
+    
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        
+        if self.isLastCellWithIndexPath(indexPath) {
+        
+            self.getComics{}
         }
     }
 }
-

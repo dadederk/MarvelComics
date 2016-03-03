@@ -25,6 +25,21 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="200" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0le-EK-Uk7">
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <view key="tableFooterView" contentMode="scaleToFill" id="2yx-a6-DsY">
+                                    <rect key="frame" x="0.0" y="228" width="600" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="PTU-EA-a4J">
+                                            <rect key="frame" x="290" y="12" width="20" height="20"/>
+                                            <color key="color" red="0.88028724749999998" green="0.027443196409999999" blue="0.057130070230000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        </activityIndicatorView>
+                                    </subviews>
+                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstItem="PTU-EA-a4J" firstAttribute="centerY" secondItem="2yx-a6-DsY" secondAttribute="centerY" id="B06-wH-op2"/>
+                                        <constraint firstItem="PTU-EA-a4J" firstAttribute="centerX" secondItem="2yx-a6-DsY" secondAttribute="centerX" id="o4j-pC-qHK"/>
+                                    </constraints>
+                                </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ComicCell" rowHeight="200" id="dCS-6N-CGC" customClass="ComicCell" customModule="MarvelComics" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="600" height="200"/>
