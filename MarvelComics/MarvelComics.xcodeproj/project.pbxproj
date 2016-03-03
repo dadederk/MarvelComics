@@ -19,6 +19,9 @@
 		21E735081C87AA0E00D40F7E /* MarvelAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E735071C87AA0E00D40F7E /* MarvelAPIClient.swift */; };
 		21E7350A1C87B3E300D40F7E /* MarvelAPIParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E735091C87B3E300D40F7E /* MarvelAPIParser.swift */; };
 		21E7350D1C87B4FA00D40F7E /* Comic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E7350C1C87B4FA00D40F7E /* Comic.swift */; };
+		21E735101C87BA3300D40F7E /* ArrayDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E7350F1C87BA3300D40F7E /* ArrayDataSource.swift */; };
+		21E735121C87BA7B00D40F7E /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E735111C87BA7B00D40F7E /* DataSource.swift */; };
+		21E735151C87BB4A00D40F7E /* ComicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E735141C87BB4A00D40F7E /* ComicCell.swift */; };
 		9BC5429B8AA2445DA191B2B1 /* Pods_MarvelComics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E23C15C18031D86E971395B /* Pods_MarvelComics.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -58,6 +61,9 @@
 		21E735071C87AA0E00D40F7E /* MarvelAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarvelAPIClient.swift; sourceTree = "<group>"; };
 		21E735091C87B3E300D40F7E /* MarvelAPIParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarvelAPIParser.swift; sourceTree = "<group>"; };
 		21E7350C1C87B4FA00D40F7E /* Comic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comic.swift; sourceTree = "<group>"; };
+		21E7350F1C87BA3300D40F7E /* ArrayDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayDataSource.swift; sourceTree = "<group>"; };
+		21E735111C87BA7B00D40F7E /* DataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
+		21E735141C87BB4A00D40F7E /* ComicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComicCell.swift; sourceTree = "<group>"; };
 		3812C586757B4F1ECE6D0835 /* Pods-MarvelComics.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MarvelComics.release.xcconfig"; path = "Pods/Target Support Files/Pods-MarvelComics/Pods-MarvelComics.release.xcconfig"; sourceTree = "<group>"; };
 		4E23C15C18031D86E971395B /* Pods_MarvelComics.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MarvelComics.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B48D00DCA681DF345BABAB23 /* Pods-MarvelComics.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MarvelComics.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MarvelComics/Pods-MarvelComics.debug.xcconfig"; sourceTree = "<group>"; };
@@ -121,6 +127,7 @@
 				21E734A01C8790FB00D40F7E /* LaunchScreen.storyboard */,
 				21E734A31C8790FB00D40F7E /* Info.plist */,
 				21E7350B1C87B4EA00D40F7E /* Models */,
+				21E735131C87BB3A00D40F7E /* Views */,
 				21E735031C87A46D00D40F7E /* Controllers */,
 				21E734FF1C87A0F800D40F7E /* ConfigFiles */,
 			);
@@ -157,6 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				21E735041C87A46D00D40F7E /* Networking */,
+				21E7350E1C87BA1300D40F7E /* Common */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -177,6 +185,23 @@
 				21E7350C1C87B4FA00D40F7E /* Comic.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		21E7350E1C87BA1300D40F7E /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				21E735111C87BA7B00D40F7E /* DataSource.swift */,
+				21E7350F1C87BA3300D40F7E /* ArrayDataSource.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		21E735131C87BB3A00D40F7E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				21E735141C87BB4A00D40F7E /* ComicCell.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		8575972A724F768B1E2D110C /* Pods */ = {
@@ -382,8 +407,11 @@
 				21E7350A1C87B3E300D40F7E /* MarvelAPIParser.swift in Sources */,
 				21E7350D1C87B4FA00D40F7E /* Comic.swift in Sources */,
 				21E7349A1C8790FB00D40F7E /* ViewController.swift in Sources */,
+				21E735151C87BB4A00D40F7E /* ComicCell.swift in Sources */,
+				21E735101C87BA3300D40F7E /* ArrayDataSource.swift in Sources */,
 				21E735081C87AA0E00D40F7E /* MarvelAPIClient.swift in Sources */,
 				21E735061C87A51300D40F7E /* MarvelAPIConfiguration.swift in Sources */,
+				21E735121C87BA7B00D40F7E /* DataSource.swift in Sources */,
 				21E734981C8790FB00D40F7E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
