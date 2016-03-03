@@ -10,8 +10,30 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    var dataSource: ArrayDataSource!
+    
+    @IBOutlet weak var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let configureCell: ConfigureCell = {(cell, item) in
+            if let comic = item as? Comic,
+                let comicCell = cell as? ComicCell {
+                    comicCell.titleLabel.text = comic.title
+            }
+        }
+        
+        MarvelAPIClient.comics { comics -> () in
+            
+                self.dataSource = ArrayDataSource(
+                    items: comics,
+                    cellReuseIdentifier: String(ComicCell),
+                    configureCell: configureCell)
+                
+                self.tableView?.dataSource = self.dataSource
+                self.tableView.reloadData()
+        }
     }
 }
 
