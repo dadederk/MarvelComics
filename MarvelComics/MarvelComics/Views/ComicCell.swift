@@ -12,4 +12,5 @@ import UIKit
 class ComicCell: UITableViewCell {
     
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var coverImageView: UIImageView!
 }
