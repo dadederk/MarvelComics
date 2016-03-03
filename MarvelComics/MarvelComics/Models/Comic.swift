@@ -10,9 +10,11 @@ import Foundation
 
 class Comic {
     let title: String
+    let imageURL: String
     
-    init(title: String){
+    init(title: String, imageURL: String) {
     
         self.title = title
+        self.imageURL = imageURL
     }
 }

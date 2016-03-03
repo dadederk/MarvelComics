@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class ViewController: UIViewController {
 
@@ -22,7 +23,9 @@ class ViewController: UIViewController {
         self.configureCell = {(cell, item) in
             if let comic = item as? Comic,
                 let comicCell = cell as? ComicCell {
+                    
                     comicCell.titleLabel.text = comic.title
+                    comicCell.coverImageView.sd_setImageWithURL(NSURL(string: comic.imageURL))
             }
         }
         

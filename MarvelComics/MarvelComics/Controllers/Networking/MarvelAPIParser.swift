@@ -17,7 +17,12 @@ struct MarvelAPIParser {
         let data = json["data"]
         
         for comic in data["results"].arrayValue {
-            comics.append(Comic(title:comic["title"].stringValue))
+            
+            let title = comic["title"].stringValue
+            let thumbnail = comic["thumbnail"].dictionaryValue
+            let imageURL = (thumbnail["path"]!.stringValue) + "." + (thumbnail["extension"]!.stringValue)
+            
+            comics.append(Comic(title:title, imageURL:imageURL))
         }
         
         return comics
