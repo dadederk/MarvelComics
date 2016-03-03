@@ -8,6 +8,11 @@
 
 import Foundation
 
-struct Comic {
+class Comic {
     let title: String
+    
+    init(title: String){
+    
+        self.title = title
+    }
 }
