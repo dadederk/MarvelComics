@@ -10,6 +10,10 @@ import Foundation
 import BothamNetworking
 import CryptoSwift
 
+enum OrderBy: String {
+    case onsaleAscending = "-onsaleDate", onsaleDescending = "onsaleDate"
+}
+
 struct MarvelAPIClient {
 
     static private let baseURL = "http://gateway.marvel.com:80/v1/public/"
@@ -19,12 +23,19 @@ struct MarvelAPIClient {
         static let timestamp = "ts"
         static let apiKey = "apikey"
         static let hash = "hash"
+        static let offset = "offset"
+        static let orderBy = "orderBy"
     }
     
-    static func comics(completion:([Comic]) -> ()) {
+    static func comics(index:Int = 0, orderBy: OrderBy = OrderBy.onsaleAscending, completion:([Comic]) -> ()) {
         
         let apiClient = BothamAPIClient(baseEndpoint: baseURL)
-        apiClient.GET(comicsEndPoint, parameters: basicParams()) { result -> () in
+        var params = basicParams()
+        
+        params.appendDictionary([MarvelAPIParams.offset: "\(index)",
+            MarvelAPIParams.orderBy: "-onsaleDate"])
+        
+        apiClient.GET(comicsEndPoint, parameters: params) { result -> () in
             result.mapJSON({ json in
                 dispatch_async(dispatch_get_main_queue(), {
                     completion(MarvelAPIParser.parseComics(json))
@@ -39,6 +50,8 @@ struct MarvelAPIClient {
         let timestamp = NSDate.timeIntervalSinceReferenceDate()
         let hash = "\(timestamp)\(MarvelAPIConfig.privateKey)\(apiKey)".md5()
         
-        return [MarvelAPIParams.timestamp: "\(timestamp)", MarvelAPIParams.apiKey: apiKey, MarvelAPIParams.hash: hash]
+        return [MarvelAPIParams.timestamp: "\(timestamp)",
+            MarvelAPIParams.apiKey: apiKey,
+            MarvelAPIParams.hash: hash]
     }
 }
