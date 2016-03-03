@@ -27,7 +27,7 @@ struct MarvelAPIClient {
         static let orderBy = "orderBy"
     }
     
-    static func comics(index:Int = 0, orderBy: OrderBy = OrderBy.onsaleAscending, completion:([Comic]) -> ()) {
+    static func comics(index:Int = 0, orderBy: OrderBy = OrderBy.onsaleAscending, completion:([Comic]?) -> ()) {
         
         let apiClient = BothamAPIClient(baseEndpoint: baseURL)
         var params = basicParams()
@@ -36,11 +36,18 @@ struct MarvelAPIClient {
             MarvelAPIParams.orderBy: "-onsaleDate"])
         
         apiClient.GET(comicsEndPoint, parameters: params) { result -> () in
-            result.mapJSON({ json in
-                dispatch_async(dispatch_get_main_queue(), {
-                    completion(MarvelAPIParser.parseComics(json))
+            
+            if let _ = result.error {
+            
+                completion(nil)
+            } else {
+            
+                result.mapJSON({ json in
+                    dispatch_async(dispatch_get_main_queue(), {
+                        completion(MarvelAPIParser.parseComics(json))
+                    })
                 })
-            })
+            }
         }
     }
     

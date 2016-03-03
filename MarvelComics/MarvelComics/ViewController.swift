@@ -26,6 +26,8 @@ class ViewController: UIViewController {
         
         MarvelAPIClient.comics(orderBy:OrderBy.onsaleDescending) { comics -> () in
             
+            if let comics = comics {
+            
                 self.dataSource = ArrayDataSource(
                     items: comics,
                     cellReuseIdentifier: String(ComicCell),
@@ -33,6 +35,10 @@ class ViewController: UIViewController {
                 
                 self.tableView?.dataSource = self.dataSource
                 self.tableView.reloadData()
+            } else {
+                
+                print("Error getting comics")
+            }
         }
     }
 }
