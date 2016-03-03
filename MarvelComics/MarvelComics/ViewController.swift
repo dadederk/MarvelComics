@@ -24,7 +24,7 @@ class ViewController: UIViewController {
             }
         }
         
-        MarvelAPIClient.comics { comics -> () in
+        MarvelAPIClient.comics(orderBy:OrderBy.onsaleDescending) { comics -> () in
             
                 self.dataSource = ArrayDataSource(
                     items: comics,
