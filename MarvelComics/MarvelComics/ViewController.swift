@@ -14,8 +14,10 @@ class ViewController: UIViewController, UITableViewDelegate, UIImagePickerContro
     var dataSource: ArrayDataSource!
     var configureCell: ConfigureCell!
     var comics: [Comic] = []
-    var selectedComic: Comic!
+    let fileImageManager = FileImageManager()
     
+    var selectedIndex: NSIndexPath!
+    var customCovers = [String]()
     let imagePickerController = UIImagePickerController()
     
     var fetchingData = false
@@ -33,7 +35,14 @@ class ViewController: UIViewController, UITableViewDelegate, UIImagePickerContro
                     let placeholderImage = UIImage(named: "Logo")
                     
                     comicCell.titleLabel.text = comic.title
-                    comicCell.coverImageView.sd_setImageWithURL(NSURL(string: comic.imageURL), placeholderImage:placeholderImage)
+                    
+                    if self.customCovers.contains(comic.title) {
+                        if let image = self.fileImageManager.imageWithName(comic.title) {
+                            comicCell.coverImageView.image = image
+                        }
+                    } else {
+                        comicCell.coverImageView.sd_setImageWithURL(NSURL(string: comic.imageURL), placeholderImage:placeholderImage)
+                    }
             }
         }
         
@@ -102,7 +111,7 @@ class ViewController: UIViewController, UITableViewDelegate, UIImagePickerContro
             self.imagePickerController.delegate = self
             self.imagePickerController.sourceType = UIImagePickerControllerSourceType.Camera
             
-            self.selectedComic = self.comics[indexPath.row]
+            self.selectedIndex = indexPath
             
             self.presentViewController(self.imagePickerController, animated: true) {}
         }
@@ -111,6 +120,17 @@ class ViewController: UIViewController, UITableViewDelegate, UIImagePickerContro
     // MARK: UIImagePickerControllerDelegate
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
         
-        self.dismissViewControllerAnimated(true) {}
+        self.dismissViewControllerAnimated(true) {
+        
+            let filePath = self.fileImageManager.saveImage(image, name: self.comics[self.selectedIndex.row].title)
+            
+            if let _ = filePath {
+                self.customCovers.append(self.comics[self.selectedIndex.row].title)
+                
+                self.tableView.beginUpdates()
+                self.tableView.reloadRowsAtIndexPaths([self.selectedIndex], withRowAnimation: UITableViewRowAnimation.Automatic)
+                self.tableView.endUpdates()
+            }
+        }
     }
 }
