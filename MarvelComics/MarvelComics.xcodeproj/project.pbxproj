@@ -571,6 +571,7 @@
 			baseConfigurationReference = B48D00DCA681DF345BABAB23 /* Pods-MarvelComics.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = MarvelComics/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.desfici.MarvelComics;
@@ -584,6 +585,7 @@
 			baseConfigurationReference = 3812C586757B4F1ECE6D0835 /* Pods-MarvelComics.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				INFOPLIST_FILE = MarvelComics/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.desfici.MarvelComics;
