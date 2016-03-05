@@ -29,21 +29,8 @@ class ViewController: UIViewController, UITableViewDelegate, UIImagePickerContro
         super.viewDidLoad()
         
         self.configureCell = {(cell, item) in
-            if let comic = item as? Comic,
-                let comicCell = cell as? ComicCell {
             
-                    let placeholderImage = UIImage(named: "Logo")
-                    
-                    comicCell.titleLabel.text = comic.title
-                    
-                    if self.customCovers.contains(comic.title) {
-                        if let image = self.fileImageManager.imageWithName(comic.title) {
-                            comicCell.coverImageView.image = image
-                        }
-                    } else {
-                        comicCell.coverImageView.sd_setImageWithURL(NSURL(string: comic.imageURL), placeholderImage:placeholderImage)
-                    }
-            }
+            self.configureCell(cell, item: item)
         }
         
         self.tableView.hidden = true
@@ -93,8 +80,23 @@ class ViewController: UIViewController, UITableViewDelegate, UIImagePickerContro
         self.tableView.reloadData()
     }
     
-    func isLastCellWithIndexPath(index:NSIndexPath) -> Bool {
-        return index.row == self.comics.count - 1
+    func configureCell(cell: AnyObject, item: AnyObject?) -> (Void) {
+        
+        if let comic = item as? Comic,
+            let comicCell = cell as? ComicCell {
+                
+                let placeholderImage = UIImage(named: "Logo")
+                
+                comicCell.titleLabel.text = comic.title
+                
+                if self.customCovers.contains(comic.title) {
+                    if let image = self.fileImageManager.imageWithName(comic.title) {
+                        comicCell.coverImageView.image = image
+                    }
+                } else {
+                    comicCell.coverImageView.sd_setImageWithURL(NSURL(string: comic.imageURL), placeholderImage:placeholderImage)
+                }
+        }
     }
     
     // MARK: UITableViewDelegate
@@ -103,6 +105,10 @@ class ViewController: UIViewController, UITableViewDelegate, UIImagePickerContro
         if self.isLastCellWithIndexPath(indexPath) {
             self.getComics{}
         }
+    }
+    
+    func isLastCellWithIndexPath(index:NSIndexPath) -> Bool {
+        return index.row == self.comics.count - 1
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
