@@ -30,7 +30,16 @@ class ViewController: UIViewController, UITableViewDelegate, UIImagePickerContro
         
         self.configureCell = {(cell, item) in
             
-            self.configureCell(cell, item: item)
+            if let comic = item as? Comic,
+                let comicCell = cell as? ComicCell {
+                    comicCell.configureComicCell(comic)
+                    
+                    if self.customCovers.contains(comic.title) {
+                        if let image = self.fileImageManager.imageWithName(comic.title) {
+                            comicCell.changeComicCellImage(image)
+                        }
+                    }
+            }
         }
         
         self.tableView.hidden = true
@@ -78,25 +87,6 @@ class ViewController: UIViewController, UITableViewDelegate, UIImagePickerContro
         
         self.tableView?.dataSource = self.dataSource
         self.tableView.reloadData()
-    }
-    
-    func configureCell(cell: AnyObject, item: AnyObject?) -> (Void) {
-        
-        if let comic = item as? Comic,
-            let comicCell = cell as? ComicCell {
-                
-                let placeholderImage = UIImage(named: "Logo")
-                
-                comicCell.titleLabel.text = comic.title
-                
-                if self.customCovers.contains(comic.title) {
-                    if let image = self.fileImageManager.imageWithName(comic.title) {
-                        comicCell.coverImageView.image = image
-                    }
-                } else {
-                    comicCell.coverImageView.sd_setImageWithURL(NSURL(string: comic.imageURL), placeholderImage:placeholderImage)
-                }
-        }
     }
     
     // MARK: UITableViewDelegate
