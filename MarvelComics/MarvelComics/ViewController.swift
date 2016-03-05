@@ -14,7 +14,6 @@ class ViewController: UIViewController, UITableViewDelegate, UIImagePickerContro
     var dataSource: ArrayDataSource!
     var configureCell: ConfigureCell!
     var comics: [Comic] = []
-    let fileImageManager = FileImageManager()
     
     var selectedIndex: NSIndexPath!
     var customCovers = [String]()
@@ -35,7 +34,7 @@ class ViewController: UIViewController, UITableViewDelegate, UIImagePickerContro
                     comicCell.configureComicCell(comic)
                     
                     if self.customCovers.contains(comic.title) {
-                        if let image = self.fileImageManager.imageWithName(comic.title) {
+                        if let image = FileImageManager.imageWithName(comic.title) {
                             comicCell.changeComicCellImage(image)
                         }
                     }
@@ -118,7 +117,7 @@ class ViewController: UIViewController, UITableViewDelegate, UIImagePickerContro
         
         self.dismissViewControllerAnimated(true) {
         
-            let filePath = self.fileImageManager.saveImage(image, name: self.comics[self.selectedIndex.row].title)
+            let filePath = FileImageManager.saveImage(image, name: self.comics[self.selectedIndex.row].title)
             
             if let _ = filePath {
                 self.customCovers.append(self.comics[self.selectedIndex.row].title)

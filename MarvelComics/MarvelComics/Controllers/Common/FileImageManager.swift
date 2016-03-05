@@ -11,7 +11,7 @@ import UIKit
 
 struct FileImageManager {
     
-    func saveImage(image: UIImage, name: String) -> String? {
+    static func saveImage(image: UIImage, name: String) -> String? {
         
         var filePath: String?
         
@@ -23,14 +23,14 @@ struct FileImageManager {
         return filePath
     }
     
-    func imageWithName(name: String) -> UIImage? {
+    static func imageWithName(name: String) -> UIImage? {
     
         let filePath = getDocumentsDirectory().stringByAppendingPathComponent("\(name).jpg")
         
         return UIImage(contentsOfFile: filePath)
     }
     
-    func getDocumentsDirectory() -> NSString {
+    static func getDocumentsDirectory() -> NSString {
         let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
         let documentsDirectory = paths[0]
         
