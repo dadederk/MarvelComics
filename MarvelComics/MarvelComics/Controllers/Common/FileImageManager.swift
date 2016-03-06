@@ -11,11 +11,11 @@ import UIKit
 
 struct FileImageManager {
     
-    static func saveImage(image: UIImage, name: String) -> String? {
+    static func saveImage(image: UIImage, name: String, quality: CGFloat) -> String? {
         
         var filePath: String?
         
-        if let data = UIImageJPEGRepresentation(image, 0.8) {
+        if let data = UIImageJPEGRepresentation(image, quality) {
             filePath = getDocumentsDirectory().stringByAppendingPathComponent("\(name).jpg")
             data.writeToFile(filePath!, atomically: true)
         }

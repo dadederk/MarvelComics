@@ -16,7 +16,6 @@ class ViewController: UIViewController, UITableViewDelegate, UIImagePickerContro
     var comics: [Comic] = []
     
     var selectedIndex: NSIndexPath!
-    var customCovers = [String]()
     let imagePickerController = UIImagePickerController()
     
     var fetchingData = false
@@ -28,16 +27,8 @@ class ViewController: UIViewController, UITableViewDelegate, UIImagePickerContro
         super.viewDidLoad()
         
         self.configureCell = {(cell, item) in
-            
-            if let comic = item as? Comic,
-                let comicCell = cell as? ComicCell {
-                    comicCell.configureComicCell(comic)
-                    
-                    if self.customCovers.contains(comic.title) {
-                        if let image = FileImageManager.imageWithName(comic.title) {
-                            comicCell.changeComicCellImage(image)
-                        }
-                    }
+            if let comic = item as? Comic, let comicCell = cell as? ComicCell {
+                comicCell.configureComicCell(comic)
             }
         }
         
@@ -84,7 +75,7 @@ class ViewController: UIViewController, UITableViewDelegate, UIImagePickerContro
             cellReuseIdentifier: String(ComicCell),
             configureCell: self.configureCell)
         
-        self.tableView?.dataSource = self.dataSource
+        self.tableView.dataSource = self.dataSource
         self.tableView.reloadData()
     }
     
@@ -116,11 +107,11 @@ class ViewController: UIViewController, UITableViewDelegate, UIImagePickerContro
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
         
         self.dismissViewControllerAnimated(true) {
-        
-            let filePath = FileImageManager.saveImage(image, name: self.comics[self.selectedIndex.row].title)
+
+            let filePath = FileImageManager.saveImage(image, name: self.comics[self.selectedIndex.row].title, quality:0.4)
             
             if let _ = filePath {
-                self.customCovers.append(self.comics[self.selectedIndex.row].title)
+                self.comics[self.selectedIndex.row].customCover = image
                 
                 self.tableView.beginUpdates()
                 self.tableView.reloadRowsAtIndexPaths([self.selectedIndex], withRowAnimation: UITableViewRowAnimation.Automatic)

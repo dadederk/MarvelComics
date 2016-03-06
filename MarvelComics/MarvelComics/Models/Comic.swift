@@ -7,10 +7,12 @@
 //
 
 import Foundation
+import UIKit
 
 class Comic {
     let title: String
     let imageURL: String
+    var customCover: UIImage?
     
     init(title: String, imageURL: String) {
     

@@ -15,8 +15,12 @@ extension ComicCell {
     
         self.titleLabel.text = comic.title
         
-        let placeholderImage = UIImage(named: "Logo")
+        if let customCover = comic.customCover {
+            self.coverImageView.image = customCover
+        } else {
+            let placeholderImage = UIImage(named: "Logo")
             self.coverImageView.sd_setImageWithURL(NSURL(string: comic.imageURL), placeholderImage:placeholderImage)
+        }
     }
     
     func changeComicCellImage(image: UIImage) {
